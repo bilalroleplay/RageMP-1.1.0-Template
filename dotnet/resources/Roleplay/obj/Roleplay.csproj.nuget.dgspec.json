@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\RAGEMP\\server-files\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {}
+    "E:\\RAGEMP\\server-files\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {}
   },
   "projects": {
-    "E:\\RAGEMP\\server-files\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {
+    "E:\\RAGEMP\\server-files\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\RAGEMP\\server-files\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+        "projectUniqueName": "E:\\RAGEMP\\server-files\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
         "projectName": "Roleplay",
-        "projectPath": "E:\\RAGEMP\\server-files\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+        "projectPath": "E:\\RAGEMP\\server-files\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
         "packagesPath": "C:\\Users\\Nick\\.nuget\\packages\\",
-        "outputPath": "E:\\RAGEMP\\server-files\\dotnet\\resources\\Roleplay\\obj\\",
+        "outputPath": "E:\\RAGEMP\\server-files\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nick\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lbvmPy/YzOktlvzXFVeTDacqqz2JOyUasDGw/XSZHoAXdo9NFDZB3VlCX78cuInBGpDVF32JBuZL1qwDDP1UEQ==",
+  "dgSpecHash": "5ngEDNRLJVA4qoNydLMP7YHngKXrTsuM5vasL9Amw44JNmx1+ZpgiNmZEaKj9qAchfT/lrO2eAFaiSiTbJBL5A==",
   "success": true,
-  "projectFilePath": "E:\\RAGEMP\\server-files\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+  "projectFilePath": "E:\\RAGEMP\\server-files\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

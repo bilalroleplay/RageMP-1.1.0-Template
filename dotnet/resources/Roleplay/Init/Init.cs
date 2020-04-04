@@ -18,6 +18,8 @@ namespace Roleplay.Init
             NAPI.Server.SetAutoSpawnOnConnect(false);
             NAPI.Server.SetAutoRespawnAfterDeath(false);
             NAPI.Server.SetGlobalServerChat(false);
+            NAPI.Server.SetLogRemoteEventParamParserExceptions(false);
+            NAPI.Server.SetLogCommandParamParserExceptions(false);
 
             NAPI.Server.SetCommandErrorMessage("[~r~SERVER~w~] Dieser Befehl existiert nicht!");
 
@@ -52,6 +54,12 @@ namespace Roleplay.Init
             Console.WriteLine("=============================");
             Console.WriteLine("====== Roleplay Script ======");
             Console.WriteLine("=============================");
+        }
+
+        [ServerEvent(Event.IncomingConnection)]
+        public void OnIncomingConnection(string ip, string serial, string rgscName, ulong rgscId, CancelEventArgs cancel)
+        {
+            Log.WriteS("Eingehende Verbindung: [IP: " + ip + " | RgScName: " + rgscName + "]");
         }
 
         [ServerEvent(Event.PlayerConnected)]

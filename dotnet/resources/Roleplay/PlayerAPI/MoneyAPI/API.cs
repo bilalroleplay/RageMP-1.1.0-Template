@@ -23,8 +23,8 @@ namespace Roleplay.PlayerAPI.MoneyAPI
         {
             MySqlConnection conn = DatabaseAPI.API.GetInstance().GetConnection();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT cash FROM characters WHERE account_id = @id", conn);
-            cmd.Parameters.AddWithValue("@id", c.GetData<int>("account_id"));
+            MySqlCommand cmd = new MySqlCommand("SELECT cash FROM characters WHERE id = @id", conn);
+            cmd.Parameters.AddWithValue("@id", c.GetData<int>("character_id"));
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
@@ -45,9 +45,9 @@ namespace Roleplay.PlayerAPI.MoneyAPI
 
             MySqlConnection conn = DatabaseAPI.API.GetInstance().GetConnection();
 
-            MySqlCommand cmd = new MySqlCommand("UPDATE characters SET cash = @cash WHERE account_id = @id", conn);
+            MySqlCommand cmd = new MySqlCommand("UPDATE characters SET cash = @cash WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@cash", value);
-            cmd.Parameters.AddWithValue("@id", c.GetData<int>("account_id"));
+            cmd.Parameters.AddWithValue("@id", c.GetData<int>("character_id"));
             cmd.ExecuteNonQuery();
 
             DatabaseAPI.API.GetInstance().FreeConnection(conn);

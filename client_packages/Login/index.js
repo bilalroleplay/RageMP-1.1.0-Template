@@ -1,6 +1,6 @@
 var loginBrowser = mp.browsers.new('package://Login/Login.html');
 
-mp.gui.cursor.show(true, true);
+mp.gui.cursor.show(true);
 
 mp.players.local.freezePosition(true);
 
@@ -38,10 +38,36 @@ let destroyCam = function(){
     camera = undefined;  
 }
 
-mp.events.add('LoginSuccess', () => {
+let selectChar = function(cId){
+    destroyCam();
+    mp.events.callRemote('login.character.select', cId);
+}
+
+mp.events.add('LoginSuccess', (chars) => {
     mp.events.remove(["LoginSuccess", "uiLogin_LoginButton"]);
     loginBrowser.destroy();
-    mp.gui.cursor.show(false, false);
+    mp.gui.cursor.show(false);
 
-    destroyCam();
+    let NativeUI = require("nativeui");
+    charSelect = new NativeUI.Menu("Charakterauswahl", "Charakter Auswahl", new NativeUI.Point(50, 50));
+    
+    chars.forEach(function(c) {
+        charSelect.AddItem(new NativeUI.UIMenuItem(c.firstName + " " + c.lastName, "Charakter auswählen"));
+    });  
+    
+    charSelect.forceOpen = true;
+
+    charSelect.ItemSelect.on((item, index)  => {
+        cId = chars[index].id;
+        selectChar(cId);
+        charSelect.forceOpen = false;
+        charSelect.Close();
+        delete charSelect;
+    });
+
+    charSelect.MenuClose.on(()  => {
+        if (charSelect.forceOpen) {
+            charSelect.Open();
+        }    
+    });
 });

@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace Roleplay.PlayerAPI
 {
@@ -25,31 +26,35 @@ namespace Roleplay.PlayerAPI
             }
         }
 
+        public struct CharacterObj
+        {
+            public int id;
+            public string firstName;
+            public string lastName;
+        }
+
         public static void Login(MySqlConnection conn, Player c, int id)
         {
+            c.SetData("account_id", id);
+
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT * FROM characters WHERE account_id = @a_id";
+            cmd.CommandText = "SELECT id, first_name, last_name FROM characters WHERE account_id = @a_id";
             cmd.Parameters.AddWithValue("@a_id", id);
             MySqlDataReader reader = cmd.ExecuteReader();
 
+            List<CharacterObj> chars = new List<CharacterObj> { };
             while (reader.Read())
             {
-                c.SetData("character_id", reader.GetInt32("id"));
-                c.SetData("dim", reader.GetUInt32("dim"));
-                c.Name = reader.GetString("first_name") + reader.GetString("last_name");
-                c.Position = new Vector3(reader.GetFloat("last_pos_x"), reader.GetFloat("last_pos_y"), reader.GetFloat("last_pos_z"));
-                c.Dimension = reader.GetUInt32("dim");
+                CharacterObj characterObj = new CharacterObj();
+                characterObj.id = reader.GetInt32("id");
+                characterObj.firstName = reader.GetString("first_name");
+                characterObj.lastName = reader.GetString("last_name");
+                chars.Add(characterObj);
             }
+
             reader.Close();
 
-            c.SetData("account_id", id);
-
-            c.TriggerEvent("ShowHUD", c);
-            c.TriggerEvent("LoginSuccess");
-
-            MoneyAPI.API.SyncCash(c);
-
-            c.SendNotification("~g~Erfolgreich eingeloggt!");
+            c.TriggerEvent("LoginSuccess", chars);
         }
     }
 }
