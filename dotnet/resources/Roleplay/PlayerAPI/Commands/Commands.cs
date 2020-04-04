@@ -4,10 +4,10 @@ namespace Roleplay.PlayerAPI.Commands
 {
     class Commands : Script
     {
-        [Command("login")]
-        public static void cmd_login(Player c, string username, string password)
+        [Command("dc")]
+        public void dc(Player c)
         {
-            LoginHandler.LoginPlayer(c, username, password);
+            c.Kick();
         }
 
         [Command("sellhouse")]

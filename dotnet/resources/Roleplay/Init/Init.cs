@@ -69,6 +69,58 @@ namespace Roleplay.Init
             c.Position = new Vector3(344.3341, -998.8612, -99.19622);
         }
 
+        [ServerEvent(Event.PlayerDisconnected)]
+        public void PlayerDisconnected(Player c, DisconnectionType type, string reason)
+        {
+            switch (type)
+            {
+                case DisconnectionType.Left:
+                    if (c.HasData("character_id"))
+                    {
+                        Log.WriteS(c.Name + ", hat den Server verlassen.");
+                        PlayerAPI.API.SavePlayer(c);
+                    } else if (c.HasData("account_id"))
+                    {
+                        Log.WriteS("Account ID: " + c.GetData<int>("account_id") + ", hat den Server verlassen.");
+                    }
+                    break;
+                case DisconnectionType.Timeout:
+                    if (c.HasData("character_id"))
+                    {
+                        Log.WriteS(c.Name + ", hat den Server verlassen. [Timeout]");
+                        PlayerAPI.API.SavePlayer(c);
+                    }
+                    else if (c.HasData("account_id"))
+                    {
+                        Log.WriteS("Account ID: " + c.GetData<int>("account_id") + ", hat den Server verlassen. [Timeout]");
+                    }
+                    break;
+                case DisconnectionType.Kicked:
+                    if (c.HasData("character_id"))
+                    {
+                        Log.WriteS(c.Name + ", hat den Server verlassen. [Kick]");
+                        PlayerAPI.API.SavePlayer(c);
+                    }
+                    else if (c.HasData("account_id"))
+                    {
+                        Log.WriteS("Account ID: " + c.GetData<int>("account_id") + ", hat den Server verlassen. [Kick]");
+                    }
+                    break;
+            }
+        }
+
+        [RemoteEvent("IfPlayerLoggedIn")]
+        public void IfPlayerLoggedIn(Player c)
+        {
+            if (c.HasData("character_id"))
+            {
+                c.TriggerEvent("VoiceMute", true);
+            } else
+            {
+                c.TriggerEvent("VoiceMute", false);
+            }
+        }
+
         [RemoteEvent("add_voice_listener")]
         public void add_voice_listener(Player c, Player t)
         {

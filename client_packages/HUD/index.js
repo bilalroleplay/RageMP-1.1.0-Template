@@ -13,17 +13,23 @@ const UseAutoVolume = false;
 
 const MaxRange = 15.0;
 
-mp.keys.bind(0x73, true, function() {
+mp.keys.bind(0x73, true, function(player) {
 	if(mp.gui.cursor.visible)
 		return;
-    mp.voiceChat.muted = !mp.voiceChat.muted;
-    mp.game.graphics.notify("Voice Chat: " + ((!mp.voiceChat.muted) ? "~g~enabled" : "~r~disabled"));
-	if (!mp.voiceChat.muted) {
-		hud.execute(`document.getElementById('voice').classList.remove("vOff");`);
-		hud.execute(`document.getElementById('voice').classList.add("vOn");`);
-	} else {
-		hud.execute(`document.getElementById('voice').classList.remove("vOn");`);
-		hud.execute(`document.getElementById('voice').classList.add("vOff");`);
+	mp.events.callRemote("IfPlayerLoggedIn", player);
+});
+
+mp.events.add("VoiceMute", (loggedIn) => {
+	if (loggedIn) {
+		mp.voiceChat.muted = !mp.voiceChat.muted;
+		mp.game.graphics.notify("Voice Chat: " + ((!mp.voiceChat.muted) ? "~g~enabled" : "~r~disabled"));
+		if (!mp.voiceChat.muted) {
+			hud.execute(`document.getElementById('voice').classList.remove("vOff");`);
+			hud.execute(`document.getElementById('voice').classList.add("vOn");`);
+		} else {
+			hud.execute(`document.getElementById('voice').classList.remove("vOn");`);
+			hud.execute(`document.getElementById('voice').classList.add("vOff");`);
+		}
 	}
 });
 

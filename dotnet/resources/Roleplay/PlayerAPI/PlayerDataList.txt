@@ -1,0 +1,5 @@
+﻿account_id
+character_id
+dim
+money_cash
+login_time

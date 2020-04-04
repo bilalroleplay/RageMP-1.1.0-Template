@@ -1,6 +1,14 @@
 var loginBrowser = mp.browsers.new('package://Login/Login.html');
 
-mp.gui.cursor.show(true);
+mp.gui.cursor.show(true, true);
+
+mp.events.add('render', () =>
+{
+	if(mp.players.local.isSprinting())
+	{
+		mp.game.player.restoreStamina(100);
+    }
+});
 
 mp.players.local.freezePosition(true);
 
@@ -46,7 +54,7 @@ let selectChar = function(cId){
 mp.events.add('LoginSuccess', (chars) => {
     mp.events.remove(["LoginSuccess", "uiLogin_LoginButton"]);
     loginBrowser.destroy();
-    mp.gui.cursor.show(false);
+    mp.gui.cursor.show(false, false);
 
     let NativeUI = require("nativeui");
     charSelect = new NativeUI.Menu("Charakterauswahl", "Charakter Auswahl", new NativeUI.Point(50, 50));
