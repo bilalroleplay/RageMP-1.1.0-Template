@@ -833,3 +833,105 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of 
    at void MySql.Data.MySqlClient.Driver.Open()
    at Driver MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
 ==================================================
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')VALUES(0, 1, 8, 8, 0, 8, 8, 0, 0.32, 0.54, 0, 11, 11, 62, 58, 0.42, 0.42, 0.42,' at line 1
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')VALUES(0, 1, 8, 8, 0, 8, 8, 0, 0.32, 0.54, 0, 11, 11, 62, 58, 0.42, 0.42, 0.42,' at line 1
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')VALUES(0, 1, 8, 8, 0, 8, 8, 0, 0.32, 0.54, 0, 11, 11, 62, 58, 0.42, 0.42, 0.42,' at line 1
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')VALUES(0, 1, 8, 8, 0, 8, 8, 0, 0.32, 0.54, 0, 11, 11, 62, 58, 0.42, 0.42, 0.42,' at line 1
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+=========================================================
+
+==================[06.04.2020 01:08:50]==================
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')VALUES(0, 1, 8, 8, 0, 8, 8, 0, 0.32, 0.54, 0, 11, 11, 62, 58, 0.42, 0.42, 0.42,' at line 1
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   at int MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at void Roleplay.PlayerAPI.Character.CreateCharacter(Player c, int hair, bool isMale, string headBlendJStr, byte eyeColor, byte hairColor, byte hightlightColor, string faceFeaturesStr, string headOverlaysJStr, string decorationJStr) in E:\xampp\htdocs\RageMP-Server\dotnet\resources\Roleplay\PlayerAPI\Character.cs:line 247
+   --- End of inner exception stack trace ---
+   at object RuntimeMethodHandle.InvokeMethod(object target, object[] arguments, Signature sig, bool constructor, bool wrapExceptions)
+   at object System.Reflection.RuntimeMethodInfo.Invoke(object obj, BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture)
+=========================================================
+
+==================[06.04.2020 01:09:01]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[06.04.2020 01:09:01]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[06.04.2020 01:09:01]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[06.04.2020 01:09:01]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown column 'created' in 'field list'
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+=========================================================
+
+==================[06.04.2020 01:09:01]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use 

@@ -56,6 +56,12 @@ namespace Roleplay
             WriteLine(ConsoleColor.Green, "SERVER", _text);
         }
 
+        //Datenbank Fehlermeldung
+        public static void WriteSError(string _text)
+        {
+            WriteLine(ConsoleColor.Red, "SCRIPT FEHLER", _text);
+        }
+
         //Hiermit kannst Du selber einen Prefix angeben so das es z.B. folgenderweise aussieht: [13:30] [PREFIX] :: TEXT
         public static void Write(ConsoleColor _c, string _prefix, string _text)
         {

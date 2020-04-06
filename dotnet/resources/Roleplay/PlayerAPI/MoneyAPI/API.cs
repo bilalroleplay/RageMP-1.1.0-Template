@@ -51,6 +51,8 @@ namespace Roleplay.PlayerAPI.MoneyAPI
             cmd.ExecuteNonQuery();
 
             DatabaseAPI.API.GetInstance().FreeConnection(conn);
+
+            c.TriggerEvent("moneyhud", c.GetData<int>("money_cash"));
         }
         #endregion
 
@@ -58,7 +60,6 @@ namespace Roleplay.PlayerAPI.MoneyAPI
         public static void AddCash(Player c, int value)
         {
             SetCash(c, c.GetData<int>("money_cash") + value);
-            c.TriggerEvent("moneyhud", c.GetData<int>("money_cash"));
             c.SendNotification("~g~+~w~" + value + "~g~$");
         }
         #endregion
@@ -67,7 +68,6 @@ namespace Roleplay.PlayerAPI.MoneyAPI
         public static void SubCash(Player c, int value)
         {
             SetCash(c, c.GetData<int>("money_cash") - value);
-            c.TriggerEvent("moneyhud", c.GetData<int>("money_cash"));
             c.SendNotification("~r~-~w~" + value + "~g~$");
         }
         #endregion

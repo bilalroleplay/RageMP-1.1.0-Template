@@ -12,6 +12,9 @@
     <Reference Include="MySql.Data">
       <HintPath>..\..\runtime\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 
 namespace Roleplay.PlayerAPI
 {
@@ -49,7 +50,7 @@ namespace Roleplay.PlayerAPI
                 {
                     int id = reader.GetInt32("id");
                     reader.Close();
-                    PlayerAPI.API.Login(conn, c, id);
+                    Login(conn, c, id);
                 }
                 else
                 {
@@ -64,6 +65,39 @@ namespace Roleplay.PlayerAPI
             }
 
             DatabaseAPI.API.GetInstance().FreeConnection(conn);
+        }
+
+        public struct CharacterObj
+        {
+            public int id;
+            public string firstName;
+            public string lastName;
+        }
+
+        public static void Login(MySqlConnection conn, Player c, int id)
+        {
+            c.SetData("account_id", id);
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT id, first_name, last_name FROM characters WHERE account_id = @a_id";
+            cmd.Parameters.AddWithValue("@a_id", id);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            List<CharacterObj> chars = new List<CharacterObj> { };
+            while (reader.Read())
+            {
+                CharacterObj characterObj = new CharacterObj
+                {
+                    id = reader.GetInt32("id"),
+                    firstName = reader.GetString("first_name"),
+                    lastName = reader.GetString("last_name")
+                };
+                chars.Add(characterObj);
+            }
+
+            reader.Close();
+
+            c.TriggerEvent("LoginSuccess", chars);
         }
     }
 }
