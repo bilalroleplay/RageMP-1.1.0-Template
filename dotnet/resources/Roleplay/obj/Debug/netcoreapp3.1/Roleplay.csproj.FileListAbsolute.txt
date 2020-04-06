@@ -67,4 +67,3 @@ E:\xampp\htdocs\RageMP-Server\dotnet\resources\Roleplay\obj\Debug\netcoreapp3.1\
 E:\xampp\htdocs\RageMP-Server\dotnet\resources\Roleplay\obj\Debug\netcoreapp3.1\Roleplay.csproj.CopyComplete
 E:\xampp\htdocs\RageMP-Server\dotnet\resources\Roleplay\obj\Debug\netcoreapp3.1\Roleplay.dll
 E:\xampp\htdocs\RageMP-Server\dotnet\resources\Roleplay\obj\Debug\netcoreapp3.1\Roleplay.pdb
-E:\xampp\htdocs\RageMP-Server\dotnet\resources\Roleplay\obj\Debug\netcoreapp3.1\Roleplay.csprojAssemblyReference.cache

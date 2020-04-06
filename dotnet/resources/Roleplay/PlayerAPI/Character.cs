@@ -31,8 +31,6 @@ namespace Roleplay.PlayerAPI
         [RemoteEvent("login.character.select")]
         public static void SelectCharacter(Player c, int id)
         {
-            bool CustomExists;
-
             MySqlConnection conn = DatabaseAPI.API.GetInstance().GetConnection();
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM characters_customization WHERE character_id = @character_id", conn);
             cmd.Parameters.AddWithValue("@character_id", id);
@@ -72,22 +70,13 @@ namespace Roleplay.PlayerAPI
                 r.GetByte("eyeColor"), r.GetByte("hairColor"), r.GetByte("hightlightColor"),
                 faceFeatures, headOverlays, new Decoration[] { });
 
-                CustomExists = true;
-            }
-            else
-            {
-                Log.WriteDError("[" + id + "][" + c.Name + "]: Fehlt in {characters_customiation} > Wird zu 'CharacterCreator' weitergeleitet.");
-                CustomExists = false;
-            }
-            r.Close();
+                r.Close();
 
-            if (CustomExists)
-            {
                 cmd = new MySqlCommand("SELECT * FROM characters_clothes WHERE character_id = @character_id", conn);
                 cmd.Parameters.AddWithValue("@character_id", id);
                 r = cmd.ExecuteReader();
                 if (r.Read())
-                {                 
+                {
                     c.SetData("shoes", r.GetInt32("shoes"));
                     c.SetData("legs", r.GetInt32("legs"));
                     c.SetData("tops", r.GetInt32("tops"));
@@ -122,9 +111,13 @@ namespace Roleplay.PlayerAPI
                 MoneyAPI.API.SyncCash(c);
 
                 c.SendNotification("~g~Erfolgreich eingeloggt!");
-            } else
+            }
+            else
             {
+                r.Close();
                 DatabaseAPI.API.GetInstance().FreeConnection(conn);
+
+                Log.WriteDError("[" + id + "][" + c.Name + "]: Fehlt in {characters_customization} > Wird zu 'CharacterCreator' weitergeleitet.");
                 c.SetData("temp_id", id);
                 CharacterCreator(c);
             }
