@@ -28,8 +28,44 @@ namespace Roleplay.Init
             Log.WriteM("Haussystem wird geladen...");
             Housesystem.API.LoadDatabaseHouses();
 
+            Log.WriteM("Fahrzeuge werden geladen...");
+            VehiclesAPI.API.lastSave = DateTime.Now;
+            VehiclesAPI.API.SpawnAll();
+
             Log.WriteS("Zeit wird angepasst...");
             NAPI.World.SetTime(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    //TODO: Zeit anpassen. Ist nur zum testen
+                    Task.Delay(500).Wait();
+                    Task VehicleCheck = Task.Run(() =>
+                    {
+                        foreach (Vehicle v in NAPI.Pools.GetAllVehicles())
+                        {
+                            if (v.HasData("engine"))
+                            {
+                                bool e = v.GetData<bool>("engine");
+                                if (v.EngineStatus != e)
+                                {
+                                    v.EngineStatus = e;
+                                    Log.WriteS("Update Vehicle Engine [" + v.GetData<int>("id") + "]");
+                                }
+
+                                if (v.GetData<float>("fuel") == 0 && v.EngineStatus)
+                                {
+                                    v.EngineStatus = false;
+                                    v.SetData("engine", false);
+                                    Log.WriteS("Update Vehicle Engine [" + v.GetData<int>("id") + "]");
+                                }
+                            }
+                        }
+                    });
+                    VehicleCheck.Wait();
+                }
+            });
 
             Task.Run(() =>
             {
@@ -45,6 +81,8 @@ namespace Roleplay.Init
                         {
                             PlayerAPI.API.SavePlayer(c);
                         }
+
+                        VehiclesAPI.API.SaveAll();
                     });
 
                     first_while.Wait();
@@ -56,68 +94,55 @@ namespace Roleplay.Init
             Console.WriteLine("=============================");
         }
 
-        [ServerEvent(Event.IncomingConnection)]
-        public void OnIncomingConnection(string ip, string serial, string rgscName, ulong rgscId, CancelEventArgs cancel)
-        {
-            Log.WriteS("Eingehende Verbindung: [IP: " + ip + " | RgScName: " + rgscName + "]");
-        }
-
         [ServerEvent(Event.PlayerConnected)]
         public void PlayerConnected(Player c)
         {
             c.Dimension = uint.MaxValue - (uint)rnd.Next(999999);
             c.Position = new Vector3(344.3341, -998.8612, -99.19622);
+            c.TriggerEvent("ShowLogin");
         }
 
         [ServerEvent(Event.PlayerDisconnected)]
         public void PlayerDisconnected(Player c, DisconnectionType type, string reason)
         {
+            PlayerAPI.API.SavePlayer(c);
+
             switch (type)
             {
                 case DisconnectionType.Left:
                     if (c.HasData("character_id"))
                     {
                         Log.WriteS(c.Name + ", hat den Server verlassen.");
-                        PlayerAPI.API.SavePlayer(c);
-                    } else if (c.HasData("account_id"))
-                    {
-                        Log.WriteS("Account ID: " + c.GetData<int>("account_id") + ", hat den Server verlassen.");
                     }
                     break;
                 case DisconnectionType.Timeout:
                     if (c.HasData("character_id"))
                     {
                         Log.WriteS(c.Name + ", hat den Server verlassen. [Timeout]");
-                        PlayerAPI.API.SavePlayer(c);
-                    }
-                    else if (c.HasData("account_id"))
-                    {
-                        Log.WriteS("Account ID: " + c.GetData<int>("account_id") + ", hat den Server verlassen. [Timeout]");
                     }
                     break;
                 case DisconnectionType.Kicked:
                     if (c.HasData("character_id"))
                     {
                         Log.WriteS(c.Name + ", hat den Server verlassen. [Kick]");
-                        PlayerAPI.API.SavePlayer(c);
-                    }
-                    else if (c.HasData("account_id"))
-                    {
-                        Log.WriteS("Account ID: " + c.GetData<int>("account_id") + ", hat den Server verlassen. [Kick]");
                     }
                     break;
             }
         }
 
         [RemoteEvent("IfPlayerLoggedIn")]
-        public void IfPlayerLoggedIn(Player c)
+        public void IfPlayerLoggedIn(Player c, string data)
         {
+            bool loggedin = false;
+
             if (c.HasData("character_id"))
+                loggedin = true;
+
+            switch(data)
             {
-                c.TriggerEvent("VoiceMute", true);
-            } else
-            {
-                c.TriggerEvent("VoiceMute", false);
+                case "voice":
+                    c.TriggerEvent("VoiceMute", loggedin);
+                    break;
             }
         }
 

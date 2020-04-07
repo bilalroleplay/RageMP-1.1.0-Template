@@ -86,9 +86,8 @@ namespace Roleplay.PlayerAPI
                 }
                 r.Close();
 
-                cmd = new MySqlCommand("SELECT * FROM characters WHERE id = @id AND account_id = @a_id", conn);
+                cmd = new MySqlCommand("SELECT * FROM characters WHERE id = @id", conn);
                 cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@a_id", c.GetData<int>("account_id"));
                 r = cmd.ExecuteReader();
                 if (r.Read())
                 {

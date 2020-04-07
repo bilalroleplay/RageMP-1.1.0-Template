@@ -33,7 +33,7 @@ if (isset($_POST)) {
 }
 
 if (isset($_SESSION['username'])) {
-    $check = $db->query("SELECT username FROM accounts WHERE username = ? AND password = ?", $_SESSION['username'], $_SESSION['password']);
+    $check = $db->query("SELECT id, username, max_characters FROM accounts WHERE username = ? AND password = ?", $_SESSION['username'], $_SESSION['password']);
     if ($check->numRows() > 0) {
         $myrow = $check->fetchArray();
     } else {

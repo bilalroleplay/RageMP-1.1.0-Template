@@ -1,0 +1,34 @@
+.login-form {
+    background-color: #d33f3f;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 15px;
+}
+
+.home-content {
+    background-color: #d33f3f;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+}
+
+.home-content p {
+    font-weight:unset;
+}
+
+p {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+a {
+    color: blue !important;
+    text-decoration: underline;
+}

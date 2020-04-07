@@ -1,6 +1,25 @@
-var loginBrowser = mp.browsers.new('package://Login/Login.html');
+let loginBrowser = null;
+let camera = undefined;
 
-mp.gui.cursor.show(true, true);
+mp.events.add('ShowLogin', (c) => {
+    loginBrowser = mp.browsers.new('package://Login/Login.html');
+    
+    mp.players.local.freezePosition(true);
+
+    mp.game.ui.displayRadar(true);
+    mp.game.ui.displayHud(true);
+
+    mp.gui.chat.activate(false);
+    mp.gui.chat.show(false);
+
+    mp.gui.cursor.show(true, true); 
+
+    camera = mp.cameras.new('default', new mp.Vector3(344.3341, -998.8612, -98.19622), new mp.Vector3(0, 0, 0), 40);
+
+    camera.pointAtCoord(-986.61447, 0, -186.61447); //-99.19622 Changes the rotation of the camera to point towards a location
+    camera.setActive(true);
+    mp.game.cam.renderScriptCams(true, false, 0, true, false);
+});
 
 mp.events.add('render', () =>
 {
@@ -9,21 +28,6 @@ mp.events.add('render', () =>
 		mp.game.player.restoreStamina(100);
     }
 });
-
-mp.players.local.freezePosition(true);
-
-mp.game.ui.displayRadar(true);
-mp.game.ui.displayHud(true);
-
-mp.gui.chat.activate(false);
-mp.gui.chat.show(false);
-
-let camera = undefined;
-camera = mp.cameras.new('default', new mp.Vector3(344.3341, -998.8612, -98.19622), new mp.Vector3(0, 0, 0), 40);
-
-camera.pointAtCoord(-986.61447, 0, -186.61447); //-99.19622 Changes the rotation of the camera to point towards a location
-camera.setActive(true);
-mp.game.cam.renderScriptCams(true, false, 0, true, false);
 
 mp.events.add('uiLogin_LoginButton', (username, password) => {
     mp.events.callRemote('LoginAccount', username, password);

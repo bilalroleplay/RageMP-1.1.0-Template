@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\xampp\\htdocs\\RageMP-Server\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+      "projectUniqueName": "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
       "projectName": "Roleplay",
-      "projectPath": "E:\\xampp\\htdocs\\RageMP-Server\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+      "projectPath": "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
       "packagesPath": "C:\\Users\\Nick\\.nuget\\packages\\",
-      "outputPath": "E:\\xampp\\htdocs\\RageMP-Server\\dotnet\\resources\\Roleplay\\obj\\",
+      "outputPath": "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nick\\AppData\\Roaming\\NuGet\\NuGet.Config",

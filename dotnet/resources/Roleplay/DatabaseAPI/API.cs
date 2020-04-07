@@ -17,7 +17,7 @@ namespace Roleplay.DatabaseAPI
         public static readonly string PASSWORD = "";
         public static readonly string SSL_MODE = "none";
 
-        public static readonly int POOL_SIZE = 32;
+        public static readonly int POOL_SIZE = 12;
 
         public static readonly int RECONNECT_INTERVAL = 180;
         #endregion

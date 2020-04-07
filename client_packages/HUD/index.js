@@ -16,7 +16,7 @@ const MaxRange = 15.0;
 mp.keys.bind(0x73, true, function(player) {
 	if(mp.gui.cursor.visible)
 		return;
-	mp.events.callRemote("IfPlayerLoggedIn", player);
+	mp.events.callRemote("IfPlayerLoggedIn", player, "voice");
 });
 
 mp.events.add("VoiceMute", (loggedIn) => {
