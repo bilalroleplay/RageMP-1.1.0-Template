@@ -558,7 +558,7 @@ mp.events.add("toggleCreator", (active) => {
 
         if (creatorCamera === undefined) {
             creatorCamera = mp.cameras.new("creatorCamera", creatorCoords.camera, new mp.Vector3(0, 0, 0), 45);
-            creatorCamera.pointAtCoord(creatorCoords.cameraLookAt);
+            creatorCamera.pointAtCoord(creatorCoords.cameraLookAt.x, creatorCoords.cameraLookAt.y, creatorCoords.cameraLookAt.z);
             creatorCamera.setActive(true);
         }
         localPlayer.setHeading(-185.0);

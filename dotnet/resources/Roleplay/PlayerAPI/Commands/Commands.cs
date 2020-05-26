@@ -4,16 +4,13 @@ namespace Roleplay.PlayerAPI.Commands
 {
     class Commands : Script
     {
-        [Command("eng")]
-        public void ShowEngineStatus(Player c)
-        {
-            c.SendNotification("Status: " + c.Vehicle.GetData<bool>("engine"));
-        }
-
         [Command("veh", GreedyArg = true)]
         public void HandleVeh(Player c, string vehName)
         {
-            VehiclesAPI.Vehicles.Create(c, vehName);
+            if (PlayerAPI.API.GetAdmin(c) > 1) //Nur Admin's und höher
+                VehiclesAPI.Vehicles.Create(c, vehName);
+            else if (PlayerAPI.API.GetAdmin(c) == 1) //Wenn Spieler ein Supporter ist
+                c.SendNotification("Du kannst diesen Befehl nicht ausführen!");
         }
 
         [Command("fuel")]
@@ -60,5 +57,21 @@ namespace Roleplay.PlayerAPI.Commands
         {
             Housesystem.API.CreateHouse(c, interior, cost);
         }
+
+        #region Admin
+        [Command("setadmin")]
+        public void SetAdmin(Player c, Player t, int lvl)
+        {
+            if (PlayerAPI.API.IsAdmin(c) && t.HasData("adminlvl"))
+                PlayerAPI.API.SetAdmin(c, t, lvl);
+        }
+
+        [Command("oc")]
+        public void OC(Player c, string[] args)
+        {
+            if (PlayerAPI.API.IsAdmin(c))
+                NAPI.Chat.SendChatMessageToAll("[~r~OC~w~]: " + args);
+        }
+        #endregion
     }
 }

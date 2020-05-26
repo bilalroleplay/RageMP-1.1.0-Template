@@ -46,7 +46,7 @@ if (isset($_SESSION["username"])) {
             $charcount = $db->query("SELECT id FROM characters WHERE account_id = ?", $myrow["id"])->numRows();
             if ($charcount < $myrow['max_characters']) {
                 ?>
-                <a href="#"><h3>Character erstellen</h3></a>
+                <a href="/create"><h3>Character erstellen</h3></a>
                 <?php
             }
         ?>

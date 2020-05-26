@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {}
+    "E:\\Projekte\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {}
   },
   "projects": {
-    "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {
+    "E:\\Projekte\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+        "projectUniqueName": "E:\\Projekte\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
         "projectName": "Roleplay",
-        "projectPath": "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
+        "projectPath": "E:\\Projekte\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\Roleplay.csproj",
         "packagesPath": "C:\\Users\\Nick\\.nuget\\packages\\",
-        "outputPath": "E:\\xampp\\htdocs\\RageMP\\dotnet\\resources\\Roleplay\\obj\\",
+        "outputPath": "E:\\Projekte\\RageMP-1.1.0-Template\\dotnet\\resources\\Roleplay\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nick\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,7 +55,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 07. Apr 2020 um 11:48
+-- Erstellungszeit: 26. Mai 2020 um 11:56
 -- Server-Version: 10.4.11-MariaDB
--- PHP-Version: 7.4.4
+-- PHP-Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,15 +33,6 @@ CREATE TABLE `accounts` (
   `password` varchar(255) NOT NULL,
   `max_characters` int(11) NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `accounts`
---
-
-INSERT INTO `accounts` (`id`, `username`, `password`, `max_characters`) VALUES
-(1, 'peter', 'test', 2),
-(7, 'testt', 'testt', 2),
-(8, 'testa', 'tester', 2);
 
 -- --------------------------------------------------------
 
@@ -741,6 +732,7 @@ INSERT INTO `cfg_vehicles_type` (`id`, `name`) VALUES
 CREATE TABLE `characters` (
   `id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
+  `admin` int(11) NOT NULL DEFAULT 0,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `cash` int(255) NOT NULL,
@@ -749,15 +741,6 @@ CREATE TABLE `characters` (
   `last_pos_y` float NOT NULL,
   `last_pos_z` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `characters`
---
-
-INSERT INTO `characters` (`id`, `account_id`, `first_name`, `last_name`, `cash`, `dim`, `last_pos_x`, `last_pos_y`, `last_pos_z`) VALUES
-(6, 1, 'Doktor', 'Strange', 324189, 0, 407.063, -1018.9, 28.9406),
-(8, 8, 'Peter', 'Geisel', 324189, 0, 412.234, -980.823, 29.4223),
-(9, 8, 'Peter', 'Gusenberg', 8500, 0, 413.939, -992.178, 29.4005);
 
 -- --------------------------------------------------------
 
@@ -780,14 +763,6 @@ CREATE TABLE `characters_clothes` (
   `decals` int(11) NOT NULL,
   `tops` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `characters_clothes`
---
-
-INSERT INTO `characters_clothes` (`id`, `character_id`, `hair`, `masks`, `torsos`, `legs`, `bags`, `shoes`, `accessories`, `undershirts`, `armor`, `decals`, `tops`) VALUES
-(2, 6, 7, 0, 11, 4, 0, 4, 0, 15, 0, 0, 13),
-(4, 9, 11, 0, 4, 4, 0, 4, 0, 2, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -885,14 +860,6 @@ CREATE TABLE `characters_customization` (
   `o_o_addBodyBlemishes` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
---
--- Daten für Tabelle `characters_customization`
---
-
-INSERT INTO `characters_customization` (`id`, `character_id`, `sex`, `h_ShapeFirst`, `h_ShapeSecond`, `h_ShapeThird`, `h_SkinFirst`, `h_SkinSecond`, `h_SkinThird`, `h_ShapeMix`, `h_SkinMix`, `h_ThirdMix`, `eyeColor`, `hairColor`, `hightlightColor`, `f_noseWidth`, `f_noseHeight`, `f_noseLength`, `f_noseBridge`, `f_noseTip`, `f_noseShift`, `f_browHeight`, `f_browWidth`, `f_cheekboneHeight`, `f_cheekboneWidth`, `f_cheeksWidth`, `f_eyes`, `f_lips`, `f_jawWidth`, `f_jawHeight`, `f_chinLength`, `f_chinPosition`, `f_chinWidth`, `f_chinShape`, `f_neckWidth`, `o_i_blemishes`, `o_c_blemishes`, `o_c2_blemishes`, `o_o_blemishes`, `o_i_facialHair`, `o_c_facialHair`, `o_c2_facialHair`, `o_o_facialHair`, `o_i_eyebrows`, `o_c_eyebrows`, `o_c2_eyebrows`, `o_o_eyebrows`, `o_i_ageing`, `o_c_ageing`, `o_c2_ageing`, `o_o_ageing`, `o_i_makeup`, `o_c_makeup`, `o_c2_makeup`, `o_o_makeup`, `o_i_blush`, `o_c_blush`, `o_c2_blush`, `o_o_blush`, `o_i_complexion`, `o_c_complexion`, `o_c2_complexion`, `o_o_complexion`, `o_i_sunDamage`, `o_c_sunDamage`, `o_c2_sunDamage`, `o_o_sunDamage`, `o_i_lipstick`, `o_c_lipstick`, `o_c2_lipstick`, `o_o_lipstick`, `o_i_molesFreckles`, `o_c_molesFreckles`, `o_c2_molesFreckles`, `o_o_molesFreckles`, `o_i_chestHair`, `o_c_chestHair`, `o_c2_chestHair`, `o_o_chestHair`, `o_i_bodyBlemishes`, `o_c_bodyBlemishes`, `o_c2_bodyBlemishes`, `o_o_bodyBlemishes`, `o_i_addBodyBlemishes`, `o_c_addBodyBlemishes`, `o_c2_addBodyBlemishes`, `o_o_addBodyBlemishes`) VALUES
-(6, 6, 1, 11, 9, 0, 11, 9, 0, 0.91, 1, 0, 5, 37, 32, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 5, 0, 0, 0.4, 21, 0, 0, 0.18, 14, 0, 0, 0.12, 11, 0, 0, 0.1, 24, 0, 0, 0.52, 4, 0, 0, 0.22, 9, 0, 0, 0.98, 1, 0, 0, 0.38, 5, 0, 0, 0.66, 10, 0, 0, 0, 2, 0, 0, 0.42, 0, 0, 0, 0, 0, 0, 0, 0),
-(8, 9, 0, 2, 0, 0, 2, 0, 0, 0.56, 0.95, 0, 7, 39, 8, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, -0.69, 5, 0, 0, 0.07, 23, 0, 0, 0.54, 255, 0, 0, 0.07, 2, 0, 0, 0.06, 35, 0, 0, 0.61, 31, 0, 0, 0.56, 8, 0, 0, 0.84, 4, 0, 0, 0.66, 3, 0, 0, 0.99, 6, 0, 0, 0, 11, 0, 0, 0.45, 0, 0, 0, 0, 0, 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -934,14 +901,6 @@ CREATE TABLE `house` (
   `cost` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
---
--- Daten für Tabelle `house`
---
-
-INSERT INTO `house` (`id`, `status`, `owner`, `interior`, `x`, `y`, `z`, `locked`, `cost`) VALUES
-(6, 0, 'DonaldDuck', 5, 1.67415, 17.7212, 71.0122, 0, 250000),
-(7, 0, 'DonaldDuck', 1, -5.51424, 20.0145, 71.2001, 1, 245400);
-
 -- --------------------------------------------------------
 
 --
@@ -952,8 +911,8 @@ CREATE TABLE `vehicles` (
   `id` int(11) NOT NULL,
   `cfg_vehicle_id` int(11) NOT NULL,
   `character_id` int(11) NOT NULL,
+  `engine` tinyint(1) NOT NULL,
   `alive` tinyint(1) NOT NULL DEFAULT 1,
-  `engine` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `p_x` float NOT NULL,
   `p_y` float NOT NULL,
@@ -976,21 +935,6 @@ CREATE TABLE `vehicles` (
   `insert` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_owner_change` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
---
--- Daten für Tabelle `vehicles`
---
-
-INSERT INTO `vehicles` (`id`, `cfg_vehicle_id`, `character_id`, `alive`, `engine`, `locked`, `p_x`, `p_y`, `p_z`, `r`, `dim`, `insurance`, `c`, `c_r`, `c_g`, `c_b`, `s`, `s_r`, `s_g`, `s_b`, `hp`, `km`, `fuel`, `last_used`, `insert`, `last_owner_change`) VALUES
-(80, 612, 6, 1, 0, 0, -0.043838, 19.3415, 71.0584, -0.00531389, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 37.5, '2020-04-07 03:34:38', '2020-04-07 03:34:38', '2020-04-07 03:34:38'),
-(81, 612, 7, 1, 0, 0, 1694.07, 42.9726, 154.759, -98.3728, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 12.3538, 57.579, '2020-04-07 05:03:05', '2020-04-07 03:44:30', '2020-04-07 03:44:30'),
-(82, 5, 7, 1, 0, 0, 1646.89, 37.4025, 172.077, 70.9971, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0.015728, 6.4945, '2020-04-07 05:25:59', '2020-04-07 05:18:37', '2020-04-07 05:18:37'),
-(83, 5, 6, 1, 0, 0, 748.576, -2.02812, 62.1954, 133.15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 3.86722, 0, '2020-04-07 05:30:00', '2020-04-07 05:20:40', '2020-04-07 05:20:40'),
-(84, 612, 6, 1, 0, 0, 408.34, -989.192, 28.8399, -127.779, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 4.13547, 27.9884, '2020-04-07 07:27:44', '2020-04-07 05:34:58', '2020-04-07 05:34:58'),
-(85, 612, 6, 1, 0, 0, 408.32, -984.474, 28.8426, -130.206, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0.039967, 37.4081, '2020-04-07 06:12:39', '2020-04-07 06:12:19', '2020-04-07 06:12:19'),
-(86, 612, 6, 1, 1, 0, 407.063, -1018.9, 28.9406, 6.92493, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 5.84985, 24.0453, '2020-04-07 09:47:09', '2020-04-07 06:12:49', '2020-04-07 06:12:49'),
-(87, 612, 6, 1, 0, 0, 407.847, -997.679, 28.8452, -129.179, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0.127544, 0, '2020-04-07 09:29:54', '2020-04-07 06:16:19', '2020-04-07 06:16:19'),
-(88, 612, 9, 1, 1, 0, 408.917, -993.994, 28.842, -127.551, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 2.98374, 30.6374, '2020-04-07 09:44:48', '2020-04-07 09:29:01', '2020-04-07 09:29:01');
 
 --
 -- Indizes der exportierten Tabellen
@@ -1072,13 +1016,13 @@ ALTER TABLE `vehicles`
 -- AUTO_INCREMENT für Tabelle `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `accounts_socialclub`
 --
 ALTER TABLE `accounts_socialclub`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `bans_socialclub`
@@ -1102,19 +1046,19 @@ ALTER TABLE `cfg_vehicles_type`
 -- AUTO_INCREMENT für Tabelle `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `characters_clothes`
 --
 ALTER TABLE `characters_clothes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `characters_customization`
 --
 ALTER TABLE `characters_customization`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `cms_pages`
@@ -1126,13 +1070,13 @@ ALTER TABLE `cms_pages`
 -- AUTO_INCREMENT für Tabelle `house`
 --
 ALTER TABLE `house`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

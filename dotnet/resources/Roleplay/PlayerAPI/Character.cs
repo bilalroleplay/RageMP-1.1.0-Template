@@ -16,7 +16,7 @@ namespace Roleplay.PlayerAPI
             "f_chinLength", "f_chinPosition", "f_chinWidth", "f_chinShape", "f_neckWidth"
         };
 
-        private static HeadOverlay CreateHeadOverlay(Byte index, Byte color, Byte secondaryColor, float opacity)
+        private static HeadOverlay CreateHeadOverlay(byte index, byte color, byte secondaryColor, float opacity)
         {
             return new HeadOverlay
             {
@@ -52,9 +52,7 @@ namespace Roleplay.PlayerAPI
 
                 float[] faceFeatures = new float[faceFeatureNames.Length];
                 for (int i = 0; i < faceFeatureNames.Length; i++)
-                {
                     faceFeatures[i] = r.GetFloat(faceFeatureNames[i]);
-                }
 
                 Dictionary<int, HeadOverlay> headOverlays = new Dictionary<int, HeadOverlay>();
 
@@ -91,7 +89,7 @@ namespace Roleplay.PlayerAPI
                 r = cmd.ExecuteReader();
                 if (r.Read())
                 {
-
+                    c.SetData("adminlvl", r.GetInt32("admin"));
                     c.SetData("dim", r.GetUInt32("dim"));
                     c.Name = r.GetString("first_name") + r.GetString("last_name");
                     c.Position = new Vector3(r.GetFloat("last_pos_x"), r.GetFloat("last_pos_y"), r.GetFloat("last_pos_z"));
@@ -116,7 +114,7 @@ namespace Roleplay.PlayerAPI
                 r.Close();
                 DatabaseAPI.API.GetInstance().FreeConnection(conn);
 
-                Log.WriteDError("[" + id + "][" + c.Name + "]: Fehlt in {characters_customization} > Wird zu 'CharacterCreator' weitergeleitet.");
+                //Log.WriteDError("[" + id + "][" + c.Name + "]: Fehlt in {characters_customization} > Wird zu 'CharacterCreator' weitergeleitet.");
                 c.SetData("temp_id", id);
                 CharacterCreator(c);
             }
@@ -223,7 +221,7 @@ namespace Roleplay.PlayerAPI
             }
             cmd.ExecuteNonQuery();
 
-            cmd = new MySqlCommand("INSERT INTO characters_clothes (character_id, hair, torsos, shoes, legs, tops, undershirts) VALUES (@charid, @hair, @torsos, @shoes, @legs, @tops, @us)", conn);
+            cmd = new MySqlCommand("INSERT INTO characters_clothes (character_id, hair, masks, bags, accessories, armor, decals, torsos, shoes, legs, tops, undershirts) VALUES (@charid, @hair, @masks, @bags, @accessories, @armor, @decals, @torsos, @shoes, @legs, @tops, @us)", conn);
             cmd.Parameters.AddWithValue("@charid", characterId);
             cmd.Parameters.AddWithValue("@hair", hair);
             cmd.Parameters.AddWithValue("@shoes", 4);
@@ -240,6 +238,11 @@ namespace Roleplay.PlayerAPI
                 cmd.Parameters.AddWithValue("@us", 15);
             }
             cmd.Parameters.AddWithValue("@legs", 4);
+            cmd.Parameters.AddWithValue("@masks", 0);
+            cmd.Parameters.AddWithValue("@bags", 0);
+            cmd.Parameters.AddWithValue("@accessories", 0);
+            cmd.Parameters.AddWithValue("@armor", 0);
+            cmd.Parameters.AddWithValue("@decals", 0);
             cmd.ExecuteNonQuery();
 
             DatabaseAPI.API.GetInstance().FreeConnection(conn);
@@ -256,16 +259,13 @@ namespace Roleplay.PlayerAPI
         }
 
         [RemoteEvent("creator_GenderChange")]
-        public static void CharacterCreatorGenderChange(Player c, Boolean male)
+        public static void CharacterCreatorGenderChange(Player c, bool male)
         {
             if (male)
-            {
                 c.SetSkin(PedHash.FreemodeMale01);
-            }
             else
-            {
                 c.SetSkin(PedHash.FreemodeFemale01);
-            }
+
             c.TriggerEvent("creator_GenderChanged");
             c.Position = new Vector3(402.8664, -996.4108, -99.00027);
         }

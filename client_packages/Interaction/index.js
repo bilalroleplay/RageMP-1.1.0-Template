@@ -73,9 +73,9 @@ mp.events.add('StartVehicleMenu', (engine, c) => {
     
     menu.AddItem(new NativeUI.UIMenuItem("~r~Menü schließen", "Menü schließen"));
     if (engine == true) {       
-        menu.AddItem(new NativeUI.UIMenuItem("Motor starten", "Schlüssel wird benötigt!"));
+        menu.AddItem(new NativeUI.UIMenuItem("Motor abschalten", "Schlüssel wird benötigt!"));
     } else {
-        menu.AddItem(new NativeUI.UIMenuItem("Motor abschalten", "~r~Schlüssel wird benötigt!"));
+        menu.AddItem(new NativeUI.UIMenuItem("Motor starten", "Schlüssel wird benötigt!"));
     }
 
     menu.forceOpen = true;

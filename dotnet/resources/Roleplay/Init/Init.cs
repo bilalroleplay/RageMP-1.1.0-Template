@@ -41,29 +41,13 @@ namespace Roleplay.Init
                 {
                     //TODO: Zeit anpassen. Ist nur zum testen
                     Task.Delay(500).Wait();
-                    Task VehicleCheck = Task.Run(() =>
+                    foreach (Vehicle v in NAPI.Pools.GetAllVehicles())
                     {
-                        foreach (Vehicle v in NAPI.Pools.GetAllVehicles())
-                        {
-                            if (v.HasData("engine"))
-                            {
-                                bool e = v.GetData<bool>("engine");
-                                if (v.EngineStatus != e)
-                                {
-                                    v.EngineStatus = e;
-                                    Log.WriteS("Update Vehicle Engine [" + v.GetData<int>("id") + "]");
-                                }
-
-                                if (v.GetData<float>("fuel") == 0 && v.EngineStatus)
-                                {
-                                    v.EngineStatus = false;
-                                    v.SetData("engine", false);
-                                    Log.WriteS("Update Vehicle Engine [" + v.GetData<int>("id") + "]");
-                                }
-                            }
-                        }
-                    });
-                    VehicleCheck.Wait();
+                        if (v.GetData<float>("fuel") == 0)
+                            v.EngineStatus = false;
+                        else
+                            v.EngineStatus = v.GetData<bool>("engine");
+                    }
                 }
             });
 

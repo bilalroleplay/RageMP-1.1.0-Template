@@ -40,7 +40,7 @@ mp.events.add('epm', (vMulti) => {
 	mp.players.local.vehicle.setEnginePowerMultiplier(vMulti);
 });
 
-mp.events.add('vehicleEnter', (id, hp, km, multi, fuel, fuelTank, fuelConsumption, engine) => {
+mp.events.add('vehicleEnter', (id, hp, km, multi, fuel, fuelTank, fuelConsumption) => {
 	vId = id;
 	vHp = hp;
 	vKm = km;
@@ -49,8 +49,6 @@ mp.events.add('vehicleEnter', (id, hp, km, multi, fuel, fuelTank, fuelConsumptio
 	vFuelTank = fuelTank;
 	vFuelConsumption = fuelConsumption;
     veh = player.vehicle;
-    
-    setEng(veh, engine);
 
 	if(!showed) {
 		showed = true;
@@ -83,10 +81,6 @@ mp.events.add("playerLeaveVehicle", () => {
 	showed = false;
 
 	updateVeh();
-
-	if (eng) {
-		veh.setEngineOn(true, true, true);
-	}
 
 	vId = -1;
 	vHp = 0;

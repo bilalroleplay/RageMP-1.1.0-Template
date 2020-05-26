@@ -113,8 +113,7 @@ namespace Roleplay.VehiclesAPI
                 veh.GetData<int>("multi"),
                 fuel,
                 veh.GetData<float>("fuelTank"),
-                veh.GetData<float>("fuelConsumption"),
-                veh.GetData<bool>("engine")
+                veh.GetData<float>("fuelConsumption")
             );
             veh.SetData("lastUsed", DateTime.Now);
             veh.SetData("lastDriver", c.GetData<int>("character_id"));
